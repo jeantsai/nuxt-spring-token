@@ -1,0 +1,53 @@
+server:
+  port = 8080
+logging:
+  level:
+    ROOT: INFO
+spring:
+  application:
+    name: omp-api
+  cloud:
+    gateway:
+      routes:
+        - id: ui
+          uri: http://localhost:3000/public
+          predicates:
+            - Path=/public/**
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+#        - id: api
+#          uri: http://localhost:8080/
+#          predicates:
+#            - Path=/api/**
+#          filters:
+#            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+#            - StripPrefix=1
+#        - id: actuator
+#          uri: http://localhost:8080/actuator/
+#          predicates:
+#            - Path=/actuator/**
+#          filters:
+#            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+
+  security:
+    oauth2:
+      client:
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+        registration:
+          github:
+            provider: github
+            authorization-grant-type: authorization_code
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            scope: read:user
+          google-login:
+            provider: google
+            authorization-grant-type: authorization_code
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: openid, profile, email
+      resourceserver:
+        google:
+          issuer-uri: https://accounts.google.com

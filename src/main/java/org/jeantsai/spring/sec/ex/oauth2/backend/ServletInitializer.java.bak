@@ -1,0 +1,14 @@
+package org.jeantsai.spring.sec.ex.oauth2.backend;
+
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+// Cannot be included in WebFlux without Tomcat
+public class ServletInitializer extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(OAuth2ExampleApplication.class);
+	}
+
+}

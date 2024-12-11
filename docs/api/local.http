@@ -1,0 +1,8 @@
+# API Documentation
+
+## Local API
+
+### GET Homepage
+GET http://localhost:8088/index2.html
+
+###

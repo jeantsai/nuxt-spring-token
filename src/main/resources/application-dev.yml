@@ -1,0 +1,14 @@
+server:
+  port: 443
+  ssl:
+    key-store: classpath:conf/keystore.p12
+    key-store-password: B7x#2k9$Tq!P
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    ROOT: INFO
+#    org.springframework.security: DEBUG
